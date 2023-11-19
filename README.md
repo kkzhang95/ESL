@@ -17,7 +17,7 @@ Please use the following bib entry to cite this paper if you are using any resou
 ```
 
 
-We referred to the implementations of [GPO](https://github.com/woodfrog/vse_infty/blob/master/README.md) to build up our codebase. 
+We referred to the implementations of [X-Pool](https://github.com/layer6ai-labs/xpool) to build up our codebase. 
 
 ## Motivation
 <div align=center><img src="https://github.com/CrossmodalGroup/ESL/blob/main/motivation.png" width="50%" ></div>
@@ -30,32 +30,10 @@ In this paper, different from the single-dimensional correspondence with limited
 
 ### Image-text Matching Results
 
-The following tables show partial results of image-to-text retrieval on COCO and Flickr30K datasets. In these experiments, we use BERT-base as the text encoder for our methods. This branch provides our code and pre-trained models for **using BERT as the text backbone**. Some results are better than those reported in the paper. However, it should be noted that the ensemble results in the paper are not obtained by the best two checkpoints provided. It is lost due to not saving in time. You can train the model several times more and then combine any two to find the best ensemble performance. Please check out to [**the ```CLIP-based``` branch**](https://github.com/kkzhang95/ESL/blob/main/README.md) for the code and pre-trained models.
+The following tables show partial results of image-to-text retrieval on COCO and Flickr30K datasets. In these experiments, we use BERT-base as the text encoder for our methods. This branch provides our code and pre-trained models for **using CLIP Encoders as the backbone**. Please check out to [**the ```BERT-based``` branch**](https://github.com/CrossmodalGroup/ESL) for the code and pre-trained models.
 
-#### Results of 5-fold evaluation on COCO 1K Test Split
-
-| |Visual Backbone|Text Backbone|R1|R5|R10|R1|R5|R10|Rsum|Link|
-|---|:---:|:---:|---|---|---|---|---|---|---|---|
-|ESL-H | BUTD region |BERT-base|**82.5**|**97.4**|**99.0**|**66.2**|**91.9**|**96.7**|**533.5**|[Here](https://drive.google.com/file/d/1NgTLNFGhEt14YgLb3gCkWfBp1gBxvl9w/view?usp=sharing)|
-|ESL-A | BUTD region |BERT-base|**82.2**|**96.9**|**98.9**|**66.5**|**92.1**|**96.7**|**533.4**|[Here](https://drive.google.com/file/d/17jaJm2DSJbF5IuUij9s3c2fupcy4CW8T/view?usp=sharing)|
-
-
-#### Results of 5-fold evaluation on COCO 5K Test Split
-
-| |Visual Backbone|Text Backbone|R1|R5|R10|R1|R5|R10|Rsum|Link|
-|---|:---:|:---:|---|---|---|---|---|---|---|---|
-|ESL-H | BUTD region |BERT-base|**63.6**|**87.4**|**93.5**|**44.2**|**74.1**|**84.0**|**446.9**|[Here](https://drive.google.com/file/d/1NgTLNFGhEt14YgLb3gCkWfBp1gBxvl9w/view?usp=sharing)|
-|ESL-A | BUTD region |BERT-base|**63.0**|**87.6**|**93.3**|**44.5**|**74.4**|**84.1**|**447.0**|[Here](https://drive.google.com/file/d/17jaJm2DSJbF5IuUij9s3c2fupcy4CW8T/view?usp=sharing)|
-
-
-#### Results on Flickr30K Test Split
-
-| |Visual Backbone|Text Backbone|R1|R5|R10|R1|R5|R10|Rsum|Link|
-|---|:---:|:---:|---|---|---|---|---|---|---|---|
-|ESL-H | BUTD region |BERT-base|**83.5**|**96.3**|**98.4**|**65.1**|**87.6**|**92.7**|**523.7**|[Here](https://drive.google.com/file/d/17FnwyH8aSOwvUuZco0lQ5eY0TM_4LXxv/view?usp=sharing)|
-|ESL-A | BUTD region |BERT-base|**84.3**|**96.3**|**98.0**|**64.1**|**87.4**|**92.2**|**522.4**|[Here](https://drive.google.com/file/d/1ZoPW8azNkBWVq1jaQxHfI_XpINzvmv1n/view?usp=sharing)|
-
-
+The pre-trained models for MS-COCO can be find [model_best_heuristic_coco_clip_based.pth](https://drive.google.com/file/d/1Wk-dzIx04v9NXZJk4oFWVzaEPiRrsfeT/view?usp=sharing) and [model_best_adaptive_coco_clip_based.pth](https://drive.google.com/file/d/1gPM-9xppPh-RPMLm6GLJ8IUKO7GUFP5n/view?usp=sharing). 
+The pre-trained models for Flick30K are lost due to not saving in time. You can train the model yourself to produce the results. 
 
 
 
@@ -63,15 +41,10 @@ The following tables show partial results of image-to-text retrieval on COCO and
 
 ### Environment
 
-We recommended the following dependencies.
-
-* Python 3.6
-* [PyTorch](http://pytorch.org/) 1.8.0
-* [NumPy](http://www.numpy.org/) (>1.19.5)
-* [TensorBoard](https://github.com/TeamHG-Memex/tensorboard_logger)
-* The specific required environment can be found [here](https://github.com/CrossmodalGroup/ESL/blob/main/ESL.yaml) Using **conda env create -f ESL.yaml** to create the corresponding environments.
+* The specific required environment can be found [here](https://drive.google.com/file/d/1tAv2xW9u2tFgr2EhV7bIw83tW51SuM5I/view?usp=sharing) Using **conda env create -f ESL_CLIP_based.yaml** to create the corresponding environments.
 
 ### Data
+The required files dataset_flickr30k.json, train_coco.json, testall_coco.json, and dev_coco.json can be found [here](https://drive.google.com/drive/folders/1TKucwpCcKdPlby6JpAKgjxT8V0uIqwrK?usp=sharing). 
 
 Download the dataset files. We use the image feature created by SCAN. The vocabulary required by GloVe has been placed in the 'vocab' folder of the project (for Flickr30K and MSCOCO).
 
