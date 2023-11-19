@@ -32,7 +32,7 @@ In this paper, different from the single-dimensional correspondence with limited
 
 The following tables show partial results of image-to-text retrieval on COCO and Flickr30K datasets. In these experiments, we use BERT-base as the text encoder for our methods. This branch provides our code and pre-trained models for **using CLIP Encoders as the backbone**. Please check out to [**the ```BERT-based``` branch**](https://github.com/CrossmodalGroup/ESL) for the code and pre-trained models.
 
-The pre-trained models for MS-COCO can be find [model_best_heuristic_coco_clip_based.pth](https://drive.google.com/file/d/1Wk-dzIx04v9NXZJk4oFWVzaEPiRrsfeT/view?usp=sharing) and [model_best_adaptive_coco_clip_based.pth](https://drive.google.com/file/d/1gPM-9xppPh-RPMLm6GLJ8IUKO7GUFP5n/view?usp=sharing). 
+The pre-trained models for MS-COCO can be found [model_best_heuristic_coco_clip_based.pth](https://drive.google.com/file/d/1Wk-dzIx04v9NXZJk4oFWVzaEPiRrsfeT/view?usp=sharing) and [model_best_adaptive_coco_clip_based.pth](https://drive.google.com/file/d/1gPM-9xppPh-RPMLm6GLJ8IUKO7GUFP5n/view?usp=sharing). 
 The pre-trained models for Flick30K are lost due to not saving in time. You can train the model yourself to produce the results. 
 
 
@@ -46,20 +46,18 @@ The pre-trained models for Flick30K are lost due to not saving in time. You can 
 ### Data
 The required files dataset_flickr30k.json, train_coco.json, testall_coco.json, and dev_coco.json can be found [here](https://drive.google.com/drive/folders/1TKucwpCcKdPlby6JpAKgjxT8V0uIqwrK?usp=sharing). 
 
-Download the dataset files. We use the image feature created by SCAN. The vocabulary required by GloVe has been placed in the 'vocab' folder of the project (for Flickr30K and MSCOCO).
-
-You can download the dataset through Baidu Cloud. Download links are [Flickr30K]( https://pan.baidu.com/s/1Fr_bviuWLcrJ9MiiRn_H2Q) and [MSCOCO]( https://pan.baidu.com/s/1vp3gtQhT7GO0PQACBSnOrQ), the extraction code is: USTC. 
+You can download the raw image dataset through [Flick30k](https://www.kaggle.com/datasets/hsankesara/flickr-image-dataset) and [MS-COCO](https://cocodataset.org/#home). 
 
 ## Training
 
 ```bash
-sh  train_region_f30k.sh
+sh  train_clip_based_f30k.sh
 ```
 
 ```bash
-sh  train_region_coco.sh
+sh  train_clip_based_coco.sh
 ```
-For the dimensional selective mask, we design both heuristic and adaptive strategies.  You can use the flag in [vse.py](https://github.com/CrossmodalGroup/ESL/blob/main/lib/vse.py) (line 44) 
+For the dimensional selective mask, we design both heuristic and adaptive strategies.  You can use the flag in [./modules/transformer.py](https://github.com/kkzhang95/ESL/blob/main/modules/transformer.py) (line 32) 
 ```bash
 heuristic_strategy = False
 ```
@@ -67,21 +65,9 @@ to control which strategy is selected. True -> heuristic strategy, False -> adap
 
 ## Evaluation
 
-Test on Flickr30K
+Test on Flickr30K and MSCOCO
 ```bash
 python test.py
-```
-
-To do cross-validation on MSCOCO, pass `fold5=True` with a model trained using 
-`--data_name coco_precomp`.
-
-```bash
-python testall.py
-```
-
-To ensemble model, specify the model_path in test_stack.py, and run
-```bash
-python test_stack.py
 ```
 
 
