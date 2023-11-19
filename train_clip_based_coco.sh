@@ -1,0 +1,17 @@
+CUDA_VISIBLE_DEVICES=7 python3 /mnt/data10t/bakuphome20210617/zhangkun/ESL_MAIN_CLIP_BASED_COCO/train.py \
+  --videos_dir /mnt/data10t/bakuphome20210617/lz/data/data1/I-T/Flickr30K/flickr30k-images/ \
+  --dataset_name Flickr30K \
+  --exp_name replicate \
+  --output_dir /mnt/data10t/bakuphome20210617/zhangkun/ESL_clip/outputs \
+  --log_step 100 \
+  --evals_per_epoch 4 \
+  --load_epoch 0 \
+  --eval_window_size 5 \
+  --huggingface \
+  --clip_arch ViT-B/16 \
+  --embed_dim 512 \
+  --kernel_size 2 \
+  --clip_lr 1e-6 \
+  --noclip_lr 3e-5 \
+  --batch_size 64 \
+  --num_epochs 15
